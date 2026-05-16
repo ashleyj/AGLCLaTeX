@@ -1,11 +1,9 @@
-% !TEX TS-program = xelatex
 
 \documentclass[a4paper,12pt]{article}
 
 \usepackage[margin=1in]{geometry}
 
-\usepackage[backend=biber,style=aglcv3]{biblatex}
-	\bibliography{bibliography}
+\usepackage[backend=biber,style=aglcv4]{biblatex}
 
 \usepackage{titlesec}
   \renewcommand{\thesection}{\Roman{section}}
@@ -36,6 +34,9 @@
   \end{center}}
 \makeatother
 
+
+\addbibresource{sample.bib}
+
 \begin{document}
 
 \title{Test Document}
@@ -61,5 +62,10 @@ Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
 \subparagraph{Heading Level Five}
 
 Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla.
+
+
+\subparagraph{Referencing}
+The following is some examples of citing. Here is an article-volume - \cite{masters2008}
+
 
 \end{document}
