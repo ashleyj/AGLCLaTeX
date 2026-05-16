@@ -2,14 +2,17 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[australian]{babel}
-\usepackage{xeCJK}
+% requires xelatex
+%\usepackage{xeCJK}
 \usepackage{url}
 	\urlstyle{same}
 \usepackage[style=british]{csquotes}
 \usepackage[super]{nth}
 \usepackage{etoolbox}
 \usepackage{xstring}
+\usepackage{textcomp}
 \usepackage{gensymb}
+
 
 \renewcommand{\newunitpunct}{,\addspace}
 
@@ -55,7 +58,7 @@
 
 % Case report macro
 		
-\newbibmacro{case-report}{%
+\newbibmacro{caseReport}{%
 	\printfield{year}%
 	\iffieldundef{volume}{}{\addspace}%
 	\printfield{volume}%
@@ -77,19 +80,19 @@
 
 % Australian cases and administrative decisions
 
-\DeclareBibliographyAlias{case-gen-volume}{jurisdiction}
-\DeclareBibliographyAlias{case-gen-year}{jurisdiction}
-\DeclareBibliographyAlias{case-gen-mnc}{jurisdiction}
-\DeclareBibliographyAlias{case-gen-unreported}{jurisdiction}
-\DeclareBibliographyAlias{case-transcript-hca}{jurisdiction}
+\DeclareBibliographyAlias{caseGenVolume}{jurisdiction}
+\DeclareBibliographyAlias{caseGenYear}{jurisdiction}
+\DeclareBibliographyAlias{caseGenMnc}{jurisdiction}
+\DeclareBibliographyAlias{caseGenUnreported}{jurisdiction}
+\DeclareBibliographyAlias{caseTranscriptHca}{jurisdiction}
 
 \DeclareBibliographyDriver{jurisdiction}{%
 	\printfield{title}%
 	\addspace%
-	\usebibmacro{case-report}%
+	\usebibmacro{caseReport}%
 }
 
-\DeclareBibliographyDriver{case-gen-mnc}{%
+\DeclareBibliographyDriver{caseGenMnc}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{year}%
@@ -98,7 +101,7 @@
 	\printdate%
 }
 
-\DeclareBibliographyDriver{case-gen-unreported}{%
+\DeclareBibliographyDriver{caseGenUnreported}{%
 	\printfield{title}%
 	\addspace%
 	\printtext{(Unreported}%
@@ -111,7 +114,7 @@
 	\printtext{)}%
 }
 
-\DeclareBibliographyDriver{case-transcript-hca}{%
+\DeclareBibliographyDriver{caseTranscriptHca}{%
 	\printtext{Transcript of Proceedings}%
 	\newunit%
 	\printfield{title}%
@@ -124,11 +127,11 @@
 	\printdate%
 }
 
-\DeclareFieldFormat[case-gen-volume]{year}{(#1)}
-\DeclareFieldFormat[case-gen-year,case-gen-mnc,case-transcript-hca]{year}{[#1]}
-\DeclareFieldFormat[case-gen-mnc]{venue}{\addspace#1\addspace}
-\DeclareFieldFormat[case-gen-mnc,case-transcript-hca]{number}{#1}
-\DeclareFieldFormat[case-gen-mnc,case-transcript-hca]{date}{\addspace(#1)}
+\DeclareFieldFormat[caseGenVolume]{year}{(#1)}
+\DeclareFieldFormat[caseGenYear,caseGen-mnc,case-transcript-hca]{year}{[#1]}
+\DeclareFieldFormat[caseGenMnc]{venue}{\addspace#1\addspace}
+\DeclareFieldFormat[caseGenMnc,caseTranscript-hca]{number}{#1}
+\DeclareFieldFormat[caseGenMnc,caseTranscript-hca]{date}{\addspace(#1)}
 
 % Domestic arbitrations
 
@@ -150,10 +153,10 @@
 	
 % Transcripts of and submissions in court proceedings generally
 
-\DeclareBibliographyAlias{case-transcript}{jurisdiction}
-\DeclareBibliographyAlias{case-submission}{jurisdiction}
+\DeclareBibliographyAlias{caseTranscript}{jurisdiction}
+\DeclareBibliographyAlias{caseSubmission}{jurisdiction}
 
-\DeclareBibliographyDriver{case-transcript}{%
+\DeclareBibliographyDriver{caseTranscript}{%
 	\printtext{Transcript of Proceedings}%
 	\newunit%
 	\printfield{title}%
@@ -169,7 +172,7 @@
 	\printtext{)}%
 }
 
-\DeclareBibliographyDriver{case-submission}{%
+\DeclareBibliographyDriver{caseSubmission}{%
 	\printnames{author}%
 	\newunit%
 	\printfield{title}%
@@ -183,14 +186,14 @@
 	\printdate%
 }
 
-\DeclareFieldFormat[case-transcript,case-submission]{number}{#1}
-\DeclareFieldFormat[case-submission]{title}{`#1'}
+\DeclareFieldFormat[caseTranscript,caseSubmission]{number}{#1}
+\DeclareFieldFormat[caseSubmission]{title}{`#1'}
 
 % Australian legislation
 
-\DeclareBibliographyAlias{act-gen}{legislation}
-\DeclareBibliographyAlias{bill-gen}{legislation}
-\DeclareBibliographyAlias{bill-gen-exp}{legislation}
+\DeclareBibliographyAlias{actGen}{legislation}
+\DeclareBibliographyAlias{billGen}{legislation}
+\DeclareBibliographyAlias{billGenExp}{legislation}
 
 \DeclareBibliographyDriver{legislation}{%
 	\printfield{type}%
@@ -203,16 +206,16 @@
 	\printlist{location}%
 }
 
-\DeclareFieldFormat[act-gen]{origtitle}{\textit{#1}}
-\DeclareFieldFormat[act-gen]{origyear}{\addspace\textit{#1}}
-\DeclareFieldFormat[act-gen]{title}{\iffieldundef{origtitle}{\textit{#1}}{#1}}
-\DeclareFieldFormat[act-gen]{year}{\iffieldundef{origtitle}{\addspace\textit{#1}\addspace}{\addspace#1}}
-\DeclareFieldFormat[bill-gen,bill-gen-exp]{origtitle}{#1}
-\DeclareFieldFormat[bill-gen,bill-gen-exp]{origyear}{\addspace#1\addspace}
-\DeclareFieldFormat[bill-gen,bill-gen-exp]{title}{#1}
-\DeclareFieldFormat[bill-gen,bill-gen-exp]{year}{\addspace#1}
-\DeclareListFormat[act-gen,bill-gen,bill-gen-exp]{location}{\addspace(#1)}
-\DeclareFieldFormat[bill-gen-exp]{type}{#1\addcomma\addspace}
+\DeclareFieldFormat[actGen]{origtitle}{\textit{#1}}
+\DeclareFieldFormat[actGen]{origyear}{\addspace\textit{#1}}
+\DeclareFieldFormat[actGen]{title}{\iffieldundef{origtitle}{\textit{#1}}{#1}}
+\DeclareFieldFormat[actGen]{year}{\iffieldundef{origtitle}{\addspace\textit{#1}\addspace}{\addspace#1}}
+\DeclareFieldFormat[billGen,billGenExp]{origtitle}{#1}
+\DeclareFieldFormat[billGen,billGenExp]{origyear}{\addspace#1\addspace}
+\DeclareFieldFormat[billGen,billGenExp]{title}{#1}
+\DeclareFieldFormat[billGen,billGenExp]{year}{\addspace#1}
+\DeclareListFormat[actGen,billGen,billGen-exp]{location}{\addspace(#1)}
+\DeclareFieldFormat[billGenExp]{type}{#1\addcomma\addspace}
 
 % Gazettes
 
@@ -236,9 +239,9 @@
 
 % Government orders and rulings
 
-\DeclareBibliographyAlias{govt-order}{misc}
+\DeclareBibliographyAlias{govtOrder}{misc}
 
-\DeclareBibliographyDriver{govt-order}{%
+\DeclareBibliographyDriver{govtOrder}{%
 	\printnames{author}%
 	\newunit%
 	\printfield{title}%
@@ -248,26 +251,26 @@
 	\printdate%
 }
 
-\DeclareFieldFormat[govt-order]{number}{#1}
+\DeclareFieldFormat[govtOrder]{number}{#1}
 
-% Legislation delegated to non-government entities
+% Legislation delegated to nonGovernment entities
 
-\DeclareBibliographyAlias{non-govt-order}{misc}
+\DeclareBibliographyAlias{nonGovtOrder}{misc}
 
-\DeclareBibliographyDriver{non-govt-order}{%
+\DeclareBibliographyDriver{nonGovtOrder}{%
 	\printnames{author}%
 	\newunit%
 	\printfield{title}%
 	\printdate%
 }
 
-\DeclareFieldFormat[non-govt-order]{date}{\addspace{(at}\addspace#1)}
+\DeclareFieldFormat[nonGovtOrder]{date}{\addspace{(at}\addspace#1)}
 
 % Court practice directions and notes
 
 \DeclareBibliographyAlias{pracnote}{misc}
-\DeclareBibliographyAlias{pracnote-volume}{misc}
-\DeclareBibliographyAlias{pracnote-year}{misc}
+\DeclareBibliographyAlias{pracnoteVolume}{misc}
+\DeclareBibliographyAlias{pracnoteYear}{misc}
 
 \DeclareBibliographyDriver{pracnote}{%
 	\printlist{institution}%
@@ -282,7 +285,7 @@
 	\printdate%
 }
 
-\DeclareBibliographyDriver{pracnote-volume}{%
+\DeclareBibliographyDriver{pracnoteVolume}{%
 	\printlist{institution}%
 	\newunit%
 	\printfield{type}%
@@ -292,10 +295,10 @@
 	\addspace
 	\printfield{title}%
 	\addspace%
-	\usebibmacro{case-report}%
+	\usebibmacro{caseReport}%
 }
 
-\DeclareBibliographyDriver{pracnote-year}{%
+\DeclareBibliographyDriver{pracnoteYear}{%
 	\printlist{institution}%
 	\newunit%
 	\printfield{type}%
@@ -305,18 +308,18 @@
 	\addspace
 	\printfield{title}%
 	\addspace%
-	\usebibmacro{case-report}%
+	\usebibmacro{caseReport}%
 }
 
-\DeclareFieldFormat[pracnote,pracnote-volume,pracnote-year]{type}{\textit{#1}}
-\DeclareFieldFormat[pracnote,pracnote-volume,pracnote-year]{number}{\textit{#1}\addspace}
-\DeclareFieldFormat[pracnote-volume]{year}{(#1)}
-\DeclareFieldFormat[pracnote-year]{year}{[#1]}
+\DeclareFieldFormat[pracnote,pracnoteVolume,pracnoteYear]{type}{\textit{#1}}
+\DeclareFieldFormat[pracnote,pracnoteVolume,pracnoteYear]{number}{\textit{#1}\addspace}
+\DeclareFieldFormat[pracnoteVolume]{year}{(#1)}
+\DeclareFieldFormat[pracnoteYear]{year}{[#1]}
 
 % Journal articles
 
-\DeclareBibliographyAlias{article-volume}{article}
-\DeclareBibliographyAlias{article-year}{article}
+\DeclareBibliographyAlias{articleVolume}{article}
+\DeclareBibliographyAlias{articleYear}{article}
 
 \DeclareBibliographyDriver{article}{%
 	\printfield{type}%
@@ -336,13 +339,13 @@
 		\printfield{url}}{}%
 }
 
-\DeclareFieldFormat[article-volume,article-year]{title}{`#1'}
-\DeclareFieldFormat[article-volume,article-year]{part}{(Pt\addspace#1)\addspace}
-\DeclareFieldFormat[article-volume]{year}{(#1)\addspace}
-\DeclareFieldFormat[article-year]{year}{[#1]\addspace}
-\DeclareFieldFormat[article-volume,article-year]{issue}{(#1)}
-\DeclareFieldFormat[article-volume,article-year]{journaltitle}{\addspace\textit{#1}\addspace}
-\DeclareFieldFormat[article-volume,article-year]{note}{(#1)}
+\DeclareFieldFormat[articleVolume,articleYear]{title}{`#1'}
+\DeclareFieldFormat[articleVolume,articleYear]{part}{(Pt\addspace#1)\addspace}
+\DeclareFieldFormat[articleVolume]{year}{(#1)\addspace}
+\DeclareFieldFormat[articleYear]{year}{[#1]\addspace}
+\DeclareFieldFormat[articleVolume,articleYear]{issue}{(#1)}
+\DeclareFieldFormat[articleVolume,articleYear]{journaltitle}{\addspace\textit{#1}\addspace}
+\DeclareFieldFormat[articleVolume,articleYear]{note}{(#1)}
 
 % Books
 
@@ -383,9 +386,9 @@
 	\printfield{pages}%
 }
 
-\DeclareBibliographyAlias{translated-book}{book}
+\DeclareBibliographyAlias{translatedBook}{book}
 
-\DeclareBibliographyDriver{translated-book}{%
+\DeclareBibliographyDriver{translatedBook}{%
 	\usebibmacro{author}%
 	\usebibmacro{editor}%
 	\printfield{title}%
@@ -413,10 +416,10 @@
 
 \DeclareFieldFormat[book,chapter]{origyear}{first\addspace{published}\addspace#1}
 \DeclareFieldFormat[book,chapter]{year}{\iffieldundef{origyear}{#1}{#1\addspace{ed}}}
-\DeclareFieldFormat[book,chapter,translated-book]{edition}{\nth{#1}\addspace}
-\DeclareFieldFormat[book,chapter,translated-book]{volume}{\addspace{vol}\addspace#1}
+\DeclareFieldFormat[book,chapter,translatedBook]{edition}{\nth{#1}\addspace}
+\DeclareFieldFormat[book,chapter,translatedBook]{volume}{\addspace{vol}\addspace#1}
 \DeclareFieldFormat[chapter]{pages}{\addspace#1}
-\DeclareFieldFormat[translated-book]{origtitle}{\textit{#1}}
+\DeclareFieldFormat[translatedBook]{origtitle}{\textit{#1}}
 
 % Parliamentary Debates (Hansard)
 
@@ -434,9 +437,9 @@
 
 % Parliamentary Papers
 
-\DeclareBibliographyAlias{parl-paper}{misc}
+\DeclareBibliographyAlias{parlPaper}{misc}
 
-\DeclareBibliographyDriver{parl-paper}{%
+\DeclareBibliographyDriver{parlPaper}{%
 	\printlist{location}%
 	\newunit%
 	\printfield{title}%
@@ -447,13 +450,13 @@
 	\printfield{year}%
 }
 
-\DeclareFieldFormat[parl-paper]{year}{(#1)}
+\DeclareFieldFormat[parlPaper]{year}{(#1)}
 
 % Parliamentary Research Papers
 
-\DeclareBibliographyAlias{parl-research-paper}{misc}
+\DeclareBibliographyAlias{parlResearchPaper}{misc}
 
-\DeclareBibliographyDriver{parl-research-paper}{%
+\DeclareBibliographyDriver{parlResearchPaper}{%
 	\usebibmacro{author}%
 	\printfield{title}%
 	\addspace%
@@ -469,13 +472,13 @@
 	\printtext{)}%
 }
 
-\DeclareFieldFormat[parl-research-paper]{title}{`#1'}
+\DeclareFieldFormat[parlResearchPaper]{title}{`#1'}
 
 % Parliamentary Committee Reports
 
-\DeclareBibliographyAlias{parl-comm-rep}{report}
+\DeclareBibliographyAlias{parlCommRep}{report}
 
-\DeclareBibliographyDriver{parl-comm-rep}{%
+\DeclareBibliographyDriver{parlCommRep}{%
 	\printlist{institution}%
 	\newunit%
 	\printfield{venue}%
@@ -505,9 +508,9 @@
 	
 % Evidence to Parliamentary Committees
 
-\DeclareBibliographyAlias{parl-comm-evidence}{misc}
+\DeclareBibliographyAlias{parlCommEvidence}{misc}
 
-\DeclareBibliographyDriver{parl-comm-evidence}{%
+\DeclareBibliographyDriver{parlCommEvidence}{%
 	\printtext{Evidence to}%
 	\addspace%
 	\printlist{institution}%
@@ -521,9 +524,9 @@
 
 % Royal Commission Reports
 
-\DeclareBibliographyAlias{royal-comm-rep}{report}
+\DeclareBibliographyAlias{royalCommRep}{report}
 
-\DeclareBibliographyDriver{royal-comm-rep}{%
+\DeclareBibliographyDriver{royalCommRep}{%
 	\printlist{location}%
 	\newunit%
 	\printlist{institution}%
@@ -533,13 +536,13 @@
 	\printfield{year}%
 }
 
-\DeclareFieldFormat[royal-comm-rep]{year}{(#1)}
+\DeclareFieldFormat[royalCommRep]{year}{(#1)}
 
 % Law Reform Commission Reports
 
-\DeclareBibliographyAlias{lrc-rep}{report}
+\DeclareBibliographyAlias{lrcRep}{report}
 
-\DeclareBibliographyDriver{lrc-rep}{%
+\DeclareBibliographyDriver{lrcRep}{%
 	\printlist{institution}%
 	\newunit%
 	\printfield{title}%
@@ -550,7 +553,7 @@
 	\printfield{year}%
 }
 	
-\DeclareFieldFormat[lrc-rep]{year}{(#1)}
+\DeclareFieldFormat[lrcRep]{year}{(#1)}
 
 % Australian Constitutional Convention Debates
 
@@ -586,10 +589,10 @@
 
 % Legal Encyclopedias and Looseleaf Services
 
-\DeclareBibliographyAlias{legal-encyclopedia}{book}
+\DeclareBibliographyAlias{legalEncyclopedia}{book}
 \DeclareBibliographyAlias{looseleaf}{book}
 
-\DeclareBibliographyDriver{legal-encyclopedia}{%
+\DeclareBibliographyDriver{legalEncyclopedia}{%
 	\printlist{publisher}%
 	\newunit%
 	\printfield{booktitle}%
@@ -619,7 +622,7 @@
 	\printtext{)}%
 }
 
-\DeclareFieldFormat[legal-encyclopedia,looseleaf]{volume}{\addcomma\addspace{vol}\addspace#1}
+\DeclareFieldFormat[legalEncyclopedia,looseleaf]{volume}{\addcomma\addspace{vol}\addspace#1}
 
 % Newspaper articles
 
@@ -872,9 +875,9 @@
 
 % Treaties
 
-\DeclareBibliographyAlias{treaty-volume}{legal}
+\DeclareBibliographyAlias{treatyVolume}{legal}
 
-\DeclareBibliographyDriver{treaty-volume}{%
+\DeclareBibliographyDriver{treatyVolume}{%
 	\printfield{title}%
 	\newunit%
 	\printnames{author}%
@@ -889,7 +892,7 @@
 	\printtext{)}%
 }
 
-\DeclareBibliographyDriver{treaty-year}{%
+\DeclareBibliographyDriver{treatyYear}{%
 	\printfield{title}%
 	\newunit%
 	\printnames{author}%
@@ -905,7 +908,7 @@
 	\printtext{)}%
 }
 
-\DeclareBibliographyDriver{treaty-number}{%
+\DeclareBibliographyDriver{treatyNumber}{%
 	\printfield{title}%
 	\newunit%
 	\printnames{author}%
@@ -920,26 +923,26 @@
 	\printtext{)}%
 }
 
-\DeclareFieldFormat[treaty-volume]{volume}{#1\addspace}
-\DeclareFieldFormat[treaty-year]{volume}{[#1]\addspace}
-\DeclareFieldFormat[treaty-volume,treaty-year,treaty-number]{series}{#1\addspace}
-\DeclareFieldFormat[treaty-volume,treaty-year]{pages}{#1\addspace}
-\DeclareFieldFormat[treaty-year]{number}{#1\addspace}
-\DeclareFieldFormat[treaty-number]{number}{No\addspace#1\addspace}
+\DeclareFieldFormat[treatyVolume]{volume}{#1\addspace}
+\DeclareFieldFormat[treatyYear]{volume}{[#1]\addspace}
+\DeclareFieldFormat[treatyVolume,treatyYear,treatyNumber]{series}{#1\addspace}
+\DeclareFieldFormat[treatyVolume,treatyYear]{pages}{#1\addspace}
+\DeclareFieldFormat[treatyYear]{number}{#1\addspace}
+\DeclareFieldFormat[treatyNumber]{number}{No\addspace#1\addspace}
 
 \newbibmacro{signed}{%
-	\iffieldequalstr{type}{open-if}{%
+	\iffieldequalstr{type}{openIf}{%
 		\printtext{opened for signature}\addspace\printorigdate}{%
-		\iffieldequalstr{type}{open-nif}{%
+		\iffieldequalstr{type}{openNif}{%
 			\printtext{opened for signature\addspace\printorigdate}}{%
 			\iffieldsequal{year}{origyear}{}{%
 				\printtext{signed}\addspace\printorigdate}}}%
 }
 
 \newbibmacro{eif}{%
-	\iffieldequalstr{type}{open-if}{%
+	\iffieldequalstr{type}{openIf}{%
 		\printtext{entered into force}\addspace\printdate}{%
-		\iffieldequalstr{type}{open-nif}{%
+		\iffieldequalstr{type}{openNif}{%
 			\printtext{not yet in force}}{%
 			\iffieldsequal{year}{origyear}{%
 				\printtext{signed and entered into force}\addspace\printdate}{%
@@ -961,10 +964,10 @@
 
 % Reported ICJ and PCIJ cases
 
-\DeclareBibliographyAlias{case-icj-reported}{jurisdiction}
-\DeclareBibliographyAlias{case-pcij-reported}{jurisdiction}
+\DeclareBibliographyAlias{caseIcjReported}{jurisdiction}
+\DeclareBibliographyAlias{casePcijReported}{jurisdiction}
 
-\DeclareBibliographyDriver{case-icj-reported}{%
+\DeclareBibliographyDriver{caseIcjReported}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{type}%
@@ -976,7 +979,7 @@
 	\printfield{pages}%
 }
 
-\DeclareBibliographyDriver{case-pcij-reported}{%
+\DeclareBibliographyDriver{casePcijReported}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{type}%
@@ -990,16 +993,16 @@
 	\printfield{number}%
 }
 
-\DeclareFieldFormat[case-icj-reported,case-pcij-reported]{type}{\textit{(#1)}}
-\DeclareFieldFormat[case-icj-reported,case-pcij-reported]{year}{[#1]}
-\DeclareFieldFormat[case-pcij-reported]{series}{(ser\addspace#1)}
+\DeclareFieldFormat[caseIcjReported,casePcij-reported]{type}{\textit{(#1)}}
+\DeclareFieldFormat[caseIcjReported,casePcij-reported]{year}{[#1]}
+\DeclareFieldFormat[casePcijReported]{series}{(ser\addspace#1)}
 
 % ICJ and PCIJ pleadings, etc
 
-\DeclareBibliographyAlias{icj-pleading-reported}{jurisdiction}
-\DeclareBibliographyAlias{pcij-pleading-reported}{jurisdiction}
+\DeclareBibliographyAlias{icjPleadingReported}{jurisdiction}
+\DeclareBibliographyAlias{pcijPleadingReported}{jurisdiction}
 
-\DeclareBibliographyDriver{icj-pleading-reported}{%
+\DeclareBibliographyDriver{icjPleadingReported}{%
 	\printfield{title}%
 	\newunit%
 	\printfield{maintitle}%
@@ -1012,7 +1015,7 @@
 	\printfield{pages}%
 }
 
-\DeclareBibliographyDriver{pcij-pleading-reported}{%
+\DeclareBibliographyDriver{pcijPleadingReported}{%
 	\printfield{title}%
 	\newunit%
 	\printfield{maintitle}%
@@ -1027,17 +1030,17 @@
 	\printfield{pages}%	
 }
 
-\DeclareFieldFormat[icj-pleading-reported,pcij-pleading-reported]{title}{`#1'}
-\DeclareFieldFormat[icj-pleading-reported,pcij-pleading-reported]{maintitle}{\textit{#1}}
-\DeclareFieldFormat[icj-pleading-reported,pcij-pleading-reported]{year}{[#1]}
-\DeclareFieldFormat[icj-pleading-reported]{volume}{#1\addspace}
-\DeclareFieldFormat[pcij-pleading-reported]{part}{\addspace{pt}\addspace#1}
+\DeclareFieldFormat[icjPleadingReported,pcijPleading-reported]{title}{`#1'}
+\DeclareFieldFormat[icjPleadingReported,pcijPleading-reported]{maintitle}{\textit{#1}}
+\DeclareFieldFormat[icjPleadingReported,pcijPleading-reported]{year}{[#1]}
+\DeclareFieldFormat[icjPleadingReported]{volume}{#1\addspace}
+\DeclareFieldFormat[pcijPleadingReported]{part}{\addspace{pt}\addspace#1}
 
 % Unreported ICJ cases
 
-\DeclareBibliographyAlias{case-icj-unreported}{jurisdiction}
+\DeclareBibliographyAlias{caseIcjUnreported}{jurisdiction}
 
-\DeclareBibliographyDriver{case-icj-unreported}{%
+\DeclareBibliographyDriver{caseIcjUnreported}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{type}%
@@ -1052,13 +1055,13 @@
 	\printtext{)}%
 }
 
-\DeclareFieldFormat[case-icj-unreported]{type}{\textit{(#1)}}
+\DeclareFieldFormat[caseIcjUnreported]{type}{\textit{(#1)}}
 
 % Unreported ICJ pleadings
 
-\DeclareBibliographyAlias{icj-pleading-unreported}{jurisdiction}
+\DeclareBibliographyAlias{icjPleadingUnreported}{jurisdiction}
 
-\DeclareBibliographyDriver{icj-pleading-unreported}{%
+\DeclareBibliographyDriver{icjPleadingUnreported}{%
 	\printfield{title}%
 	\newunit%
 	\printfield{maintitle}%
@@ -1072,31 +1075,31 @@
 	\printdate%
 }
 
-\DeclareFieldFormat[icj-pleading-unreported]{title}{`#1'}
-\DeclareFieldFormat[icj-pleading-unreported]{maintitle}{\textit{#1}}
+\DeclareFieldFormat[icjPleadingUnreported]{title}{`#1'}
+\DeclareFieldFormat[icjPleadingUnreported]{maintitle}{\textit{#1}}
 
-\DeclareBibliographyAlias{case-intl-volume}{jurisdiction}
-\DeclareBibliographyAlias{case-intl-year}{jurisdiction}
-\DeclareBibliographyAlias{case-intl-unreported}{jurisdiction}
-\DeclareBibliographyAlias{case-intl-criminal}{jurisdiction}
+\DeclareBibliographyAlias{caseIntlVolume}{jurisdiction}
+\DeclareBibliographyAlias{caseIntlYear}{jurisdiction}
+\DeclareBibliographyAlias{caseIntlUnreported}{jurisdiction}
+\DeclareBibliographyAlias{caseIntlCriminal}{jurisdiction}
 
-\DeclareBibliographyDriver{case-intl-volume}{%
+\DeclareBibliographyDriver{caseIntlVolume}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{type}%
 	\addspace%
-	\usebibmacro{case-report}%
+	\usebibmacro{caseReport}%
 }
 
-\DeclareBibliographyDriver{case-intl-year}{%
+\DeclareBibliographyDriver{caseIntlYear}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{type}%
 	\addspace%
-	\usebibmacro{case-report}%
+	\usebibmacro{caseReport}%
 }
 
-\DeclareBibliographyDriver{case-intl-unreported}{%
+\DeclareBibliographyDriver{caseIntlUnreported}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{type}%
@@ -1110,16 +1113,16 @@
 	\printtext{)}%
 }
 
-\DeclareFieldFormat[case-intl-volume,case-intl-year,case-intl-unreported]{type}{\textit{(#1)}}
-\DeclareFieldFormat[case-intl-volume]{year}{(#1)}
-\DeclareFieldFormat[case-intl-year]{year}{[#1]}
-\DeclareFieldFormat[case-intl-unreported]{number}{Case No #1}
+\DeclareFieldFormat[caseIntlVolume,caseIntl-year,case-intl-unreported]{type}{\textit{(#1)}}
+\DeclareFieldFormat[caseIntlVolume]{year}{(#1)}
+\DeclareFieldFormat[caseIntlYear]{year}{[#1]}
+\DeclareFieldFormat[caseIntlUnreported]{number}{Case No #1}
 
 % Canadian legislation
 
-\DeclareBibliographyAlias{act-ca}{legislation}
+\DeclareBibliographyAlias{actCa}{legislation}
 
-\DeclareBibliographyDriver{act-ca}{%
+\DeclareBibliographyDriver{actCa}{%
 	\printfield{title}%
 	\newunit%
 	\printfield{volume}%
@@ -1132,16 +1135,16 @@
 	\printfield{chapter}%
 }
 
-\DeclareFieldFormat[act-ca]{number}{\addspace(\nth{#1}}
-\DeclareFieldFormat[act-ca]{type}{\addspace#1)}
-\DeclareFieldFormat[act-ca]{chapter}{c\addspace#1}
+\DeclareFieldFormat[actCa]{number}{\addspace(\nth{#1}}
+\DeclareFieldFormat[actCa]{type}{\addspace#1)}
+\DeclareFieldFormat[actCa]{chapter}{c\addspace#1}
 
 % Chinese cases
 
-\DeclareBibliographyAlias{case-cn-reported}{jurisdiction}
-\DeclareBibliographyAlias{case-cn-unreported}{jurisdiction}
+\DeclareBibliographyAlias{caseCnReported}{jurisdiction}
+\DeclareBibliographyAlias{caseCnUnreported}{jurisdiction}
 
-\DeclareBibliographyDriver{case-cn-reported}{%
+\DeclareBibliographyDriver{caseCnReported}{%
 	\printfield{origtitle}%
 	\addspace%
 	\printfield{title}%
@@ -1155,7 +1158,7 @@
 	\printfield{pages}%
 }
 
-\DeclareBibliographyDriver{case-cn-unreported}{%
+\DeclareBibliographyDriver{caseCnUnreported}{%
 	\printfield{origtitle}%
 	\addspace%
 	\printfield{title}%
@@ -1167,16 +1170,16 @@
 	\printdate%
 }
 
-\DeclareFieldFormat[case-cn-reported,case-cn-unreported]{origtitle}{\guillemotleft#1\guillemotright}
-\DeclareFieldFormat[case-cn-reported,case-cn-unreported]{title}{[#1]}
-\DeclareFieldFormat[case-cn-reported]{year}{[#1]}
-\DeclareFieldFormat[case-cn-reported,case-cn-unreported]{number}{#1}
+\DeclareFieldFormat[caseCnReported,caseCn-unreported]{origtitle}{\guillemotleft#1\guillemotright}
+\DeclareFieldFormat[caseCnReported,caseCn-unreported]{title}{[#1]}
+\DeclareFieldFormat[caseCnReported]{year}{[#1]}
+\DeclareFieldFormat[caseCnReported,caseCn-unreported]{number}{#1}
 
 % Chinese legislation
 
-\DeclareBibliographyAlias{act-cn}{legislation}
+\DeclareBibliographyAlias{actCn}{legislation}
 
-\DeclareBibliographyDriver{act-cn}{%
+\DeclareBibliographyDriver{actCn}{%
 	\printfield{origtitle}%
 	\addspace%
 	\printfield{title}%
@@ -1189,21 +1192,21 @@
 	\printdate%
 }
 
-\DeclareFieldFormat[act-cn]{origtitle}{\guillemotleft#1\guillemotright}
-\DeclareFieldFormat[act-cn]{title}{[#1]}
-\DeclareListFormat[act-cn]{location}{(#1)}
-\DeclareFieldFormat[act-cn]{type}{\addcomma\addspace#1\addspace}
-\DeclareListFormat[act-cn]{institution}{#1\addcomma\addspace}
-\DeclareFieldFormat[act-cn]{number}{No\addspace#1\addcomma\addspace}
+\DeclareFieldFormat[actCn]{origtitle}{\guillemotleft#1\guillemotright}
+\DeclareFieldFormat[actCn]{title}{[#1]}
+\DeclareListFormat[actCn]{location}{(#1)}
+\DeclareFieldFormat[actCn]{type}{\addcomma\addspace#1\addspace}
+\DeclareListFormat[actCn]{institution}{#1\addcomma\addspace}
+\DeclareFieldFormat[actCn]{number}{No\addspace#1\addcomma\addspace}
 
 % French cases
 
-\DeclareBibliographyAlias{case-fr-cass}{jurisdiction}
-\DeclareBibliographyAlias{case-fr-con}{jurisdiction}
-\DeclareBibliographyAlias{case-fr-detat}{jurisdiction}
-\DeclareBibliographyAlias{case-fr-gen}{jurisdiction}
+\DeclareBibliographyAlias{caseFrCass}{jurisdiction}
+\DeclareBibliographyAlias{caseFrCon}{jurisdiction}
+\DeclareBibliographyAlias{caseFrDetat}{jurisdiction}
+\DeclareBibliographyAlias{caseFrGen}{jurisdiction}
 
-\DeclareBibliographyDriver{case-fr-cass}{%
+\DeclareBibliographyDriver{caseFrCass}{%
 	\printfield{title}%
 	\printtext{Cour de cassation [French Court of Cassation]}%
 	\newunit%
@@ -1224,7 +1227,7 @@
 	\printfield{issue}%
 }
 
-\DeclareBibliographyDriver{case-fr-con}{%
+\DeclareBibliographyDriver{caseFrCon}{%
 	\printfield{title}%
 	\printtext{Conseil constitutionnel [French Constitutional Court]}%
 	\newunit%
@@ -1239,7 +1242,7 @@
 	\printdate%
 }
 
-\DeclareBibliographyDriver{case-fr-detat}{%
+\DeclareBibliographyDriver{caseFrDetat}{%
 	\printfield{title}%
 	\printtext{Conseil D'\'{E}tat [French Administrative Court]}%
 	\newunit%
@@ -1252,7 +1255,7 @@
 	\printtext{Rec Lebon}%
 }
 
-\DeclareBibliographyDriver{case-fr-gen}{%
+\DeclareBibliographyDriver{caseFrGen}{%
 	\printfield{title}%
 	\printfield{venue}%
 	\newunit%
@@ -1261,18 +1264,18 @@
 	\printdate%
 }
 
-\DeclareFieldFormat[case-fr-cass,case-fr-con,case-fr-detat,case-fr-gen]{title}{\textit{#1}\addcomma\addspace}
-\DeclareFieldFormat[case-fr-cass,case-fr-con,case-fr-gen]{number}{#1}
-\DeclareFieldFormat[case-fr-cass]{year}{(#1)}
-\DeclareFieldFormat[case-fr-detat]{year}{[#1]}
-\DeclareFieldFormat[case-fr-cass]{volume}{#1}
-\DeclareFieldFormat[case-fr-cass]{issue}{#1}
+\DeclareFieldFormat[caseFrCass,caseFr-con,case-fr-detat,case-fr-gen]{title}{\textit{#1}\addcomma\addspace}
+\DeclareFieldFormat[caseFrCass,caseFr-con,case-fr-gen]{number}{#1}
+\DeclareFieldFormat[caseFrCass]{year}{(#1)}
+\DeclareFieldFormat[caseFrDetat]{year}{[#1]}
+\DeclareFieldFormat[caseFrCass]{volume}{#1}
+\DeclareFieldFormat[caseFrCass]{issue}{#1}
 
 % French legislation
 
-\DeclareBibliographyAlias{act-fr-individual}{legislation}
+\DeclareBibliographyAlias{actFrIndividual}{legislation}
 
-\DeclareBibliographyDriver{act-fr-individual}{%
+\DeclareBibliographyDriver{actFrIndividual}{%
 	\printfield{origtitle}%
 	\addspace%
 	\printfield{title}%
@@ -1284,15 +1287,15 @@
 	\printdate%
 }
 
-\DeclareFieldFormat[act-fr-individual]{origtitle}{\textit{#1}}
-\DeclareFieldFormat[act-fr-individual]{title}{[#1]}
-\DeclareListFormat[act-fr-individual]{location}{(#1)}
+\DeclareFieldFormat[actFrIndividual]{origtitle}{\textit{#1}}
+\DeclareFieldFormat[actFrIndividual]{title}{[#1]}
+\DeclareListFormat[actFrIndividual]{location}{(#1)}
 
 % German cases
 
-\DeclareBibliographyAlias{case-de}{jurisdiction}
+\DeclareBibliographyAlias{caseDe}{jurisdiction}
 
-\DeclareBibliographyDriver{case-de}{%
+\DeclareBibliographyDriver{caseDe}{%
 	\printfield{title}%
 	\printfield{venue}%
 	\newunit%
@@ -1313,14 +1316,14 @@
 	}
 }
 
-\DeclareFieldFormat[case-de]{title}{\textit{#1}\addcomma\addspace}
-\DeclareFieldFormat[case-de]{year}{(#1)}
+\DeclareFieldFormat[caseDe]{title}{\textit{#1}\addcomma\addspace}
+\DeclareFieldFormat[caseDe]{year}{(#1)}
 
 % German legislation
 
-\DeclareBibliographyAlias{act-de-individual}{legislation}
+\DeclareBibliographyAlias{actDeIndividual}{legislation}
 
-\DeclareBibliographyDriver{act-de-individual}{%
+\DeclareBibliographyDriver{actDeIndividual}{%
 	\printfield{origtitle}%
 	\addspace%
 	\printfield{title}%
@@ -1336,15 +1339,15 @@
 	\printfield{pages}%
 }
 
-\DeclareFieldFormat[act-de-individual]{origtitle}{\textit{#1}}
-\DeclareFieldFormat[act-de-individual]{title}{[#1]}
-\DeclareFieldFormat[act-de-individual]{year}{#1}
+\DeclareFieldFormat[actDeIndividual]{origtitle}{\textit{#1}}
+\DeclareFieldFormat[actDeIndividual]{title}{[#1]}
+\DeclareFieldFormat[actDeIndividual]{year}{#1}
 
 % Hong Kong legislation
 
-\DeclareBibliographyAlias{act-hk-chapter}{legislation}
+\DeclareBibliographyAlias{actHkChapter}{legislation}
 
-\DeclareBibliographyDriver{act-hk-chapter}{%
+\DeclareBibliographyDriver{actHkChapter}{%
 	\printfield{title}%
 	\addspace%
 	\printlist{location}%
@@ -1354,14 +1357,14 @@
 	\printfield{chapter}%
 }
 
-\DeclareListFormat[act-hk-chapter]{location}{(#1)}
-\DeclareFieldFormat[act-hk-chapter]{chapter}{#1}
+\DeclareListFormat[actHkChapter]{location}{(#1)}
+\DeclareFieldFormat[actHkChapter]{chapter}{#1}
 
 % NZ Maori Land and Appellate Court decisions
 
-\DeclareBibliographyAlias{case-nz-maori}{jurisdiction}
+\DeclareBibliographyAlias{caseNzMaori}{jurisdiction}
 
-\DeclareBibliographyDriver{case-nz-maori}{%
+\DeclareBibliographyDriver{caseNzMaori}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{year}%
@@ -1375,14 +1378,14 @@
 	\printfield{pages}%
 }
 
-\DeclareFieldFormat[case-nz-maori]{year}{(#1)}
-\DeclareFieldFormat[case-nz-maori]{number}{#1}
+\DeclareFieldFormat[caseNzMaori]{year}{(#1)}
+\DeclareFieldFormat[caseNzMaori]{number}{#1}
 
 % NZ Waitangi Tribunal reports
 
-\DeclareBibliographyAlias{case-nz-waitangi}{report}
+\DeclareBibliographyAlias{caseNzWaitangi}{report}
 
-\DeclareBibliographyDriver{case-nz-waitangi}{%
+\DeclareBibliographyDriver{caseNzWaitangi}{%
 	\printtext{Waitangi Tribunal}%
 	\newunit%
 	\printfield{title}%
@@ -1390,13 +1393,13 @@
 	\printfield{year}%
 }
 
-\DeclareFieldFormat[case-nz-waitangi]{year}{(#1)}
+\DeclareFieldFormat[caseNzWaitangi]{year}{(#1)}
 
 % Delegated NZ legislation
 
-\DeclareBibliographyAlias{act-nz-rule}{legislation}
+\DeclareBibliographyAlias{actNzRule}{legislation}
 
-\DeclareBibliographyDriver{act-nz-rule}{%
+\DeclareBibliographyDriver{actNzRule}{%
 	\printfield{title}%
 	\addspace%
 	\printfield{year}%
@@ -1408,15 +1411,15 @@
 	\printfield{number}%
 }
 
-\DeclareFieldFormat[act-nz-rule]{year}{\textit{#1}}
-\DeclareListFormat[act-nz-rule]{location}{(#1)}
-\DeclareFieldFormat[act-nz-rule]{number}{#1}
+\DeclareFieldFormat[actNzRule]{year}{\textit{#1}}
+\DeclareListFormat[actNzRule]{location}{(#1)}
+\DeclareFieldFormat[actNzRule]{number}{#1}
 
 % Singapore legislation
 
-\DeclareBibliographyAlias{act-sg-chapter}{legislation}
+\DeclareBibliographyAlias{actSgChapter}{legislation}
 
-\DeclareBibliographyDriver{act-sg-chapter}{%
+\DeclareBibliographyDriver{actSgChapter}{%
 	\printfield{title}%
 	\addspace%
 	\printtext{(}%
@@ -1430,28 +1433,28 @@
 	\printtext{)}%
 }
 
-\DeclareFieldFormat[act-sg-chapter]{chapter}{cap\addspace#1}
-\DeclareFieldFormat[act-sg-chapter]{type}{#1}
+\DeclareFieldFormat[actSgChapter]{chapter}{cap\addspace#1}
+\DeclareFieldFormat[actSgChapter]{type}{#1}
 
 % Scottish cases arranged by year
 
-\DeclareBibliographyAlias{case-scot-year}{jurisdiction}
+\DeclareBibliographyAlias{caseScotYear}{jurisdiction}
 
-\DeclareBibliographyDriver{case-scot-year}{%
+\DeclareBibliographyDriver{caseScotYear}{%
 	\printfield{title}%
 	\addspace%
-	\usebibmacro{case-report}%
+	\usebibmacro{caseReport}%
 }
 
-\DeclareFieldFormat[case-scot-year]{year}{#1}
+\DeclareFieldFormat[caseScotYear]{year}{#1}
 
 % UK legislation
 
-\DeclareBibliographyAlias{act-uk-new}{legislation}
-\DeclareBibliographyAlias{act-uk-old}{legislation}
-\DeclareBibliographyAlias{act-uk-rule}{legislation}
+\DeclareBibliographyAlias{actUkNew}{legislation}
+\DeclareBibliographyAlias{actUkOld}{legislation}
+\DeclareBibliographyAlias{actUkRule}{legislation}
 
-\DeclareBibliographyDriver{act-uk-new}{%
+\DeclareBibliographyDriver{actUkNew}{%
 	\printfield{title}%
 	\printfield{year}%
 	\printlist{location}%
@@ -1460,7 +1463,7 @@
 	\printfield{number}%
 }
 
-\DeclareBibliographyDriver{act-uk-old}{%
+\DeclareBibliographyDriver{actUkOld}{%
 	\printfield{title}%
 	\printfield{year}%
 	\iflistundef{location}{%
@@ -1471,7 +1474,7 @@
 	\printfield{chapter}%
 }
 
-\DeclareBibliographyDriver{act-uk-rule}{%
+\DeclareBibliographyDriver{actUkRule}{%
 	\printfield{title}%
 	\printfield{year}%
 	\printlist{location}%
@@ -1481,17 +1484,17 @@
 	\printfield{number}%
 }
 
-\DeclareFieldFormat[act-uk-new,act-uk-old,act-uk-rule]{year}{\addspace\textit{#1}}
-\DeclareListFormat[act-uk-new,act-uk-old,act-uk-rule]{location}{\addspace(#1)}
-\DeclareFieldFormat[act-uk-new,act-uk-old]{chapter}{c\addspace#1}
-\DeclareFieldFormat[act-uk-new,act-uk-rule]{number}{#1}
+\DeclareFieldFormat[actUkNew,actUk-old,act-uk-rule]{year}{\addspace\textit{#1}}
+\DeclareListFormat[actUkNew,actUk-old,act-uk-rule]{location}{\addspace(#1)}
+\DeclareFieldFormat[actUkNew,actUk-old]{chapter}{c\addspace#1}
+\DeclareFieldFormat[actUkNew,actUk-rule]{number}{#1}
 
 % US Cases
 
-\DeclareBibliographyAlias{case-us-reported}{jurisdiction}
-\DeclareBibliographyAlias{case-us-unreported}{jurisdiction}
+\DeclareBibliographyAlias{caseUsReported}{jurisdiction}
+\DeclareBibliographyAlias{caseUsUnreported}{jurisdiction}
 
-\DeclareBibliographyDriver{case-us-reported}{%
+\DeclareBibliographyDriver{caseUsReported}{%
 	\printfield{title}%
 	\newunit%
 	\printfield{volume}%
@@ -1501,7 +1504,7 @@
 	\printfield{pages}%
 }
 
-\DeclareBibliographyDriver{case-us-unreported}{%
+\DeclareBibliographyDriver{caseUsUnreported}{%
 	\printfield{title}%
 	\addspace%
 	\printtext{(}%
@@ -1513,6 +1516,6 @@
 	\printtext{)}%
 }
 
-\DeclareFieldFormat[case-us-unreported]{number}{#1}
+\DeclareFieldFormat[caseUsUnreported]{number}{#1}
 
 \endinput

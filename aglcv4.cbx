@@ -11,9 +11,10 @@
 	\label{cbx@\the\value{instcount}}%
 }
 
-\DeclareListFormat{last}{\ifthenelse{\value{listcount}=1}{#1}{}}
-\DeclareNameFormat{surname}{\ifthenelse{\value{listcount}=1}{#1}{}}
-\DeclareNameFormat{firstname}{\ifthenelse{\value{listcount}=1}{#3}{}}
+% no longer available
+%\DeclareListFormat{last}{\ifthenelse{\value{listcount}=1}{#1}{}}
+\DeclareNameFormat{surname}{\ifthenelse{\value{listcount}=1}{\namepartfamily}{}}
+\DeclareNameFormat{firstname}{\ifthenelse{\value{listcount}=1}{\namepartgiven}{}}
 
 % for surnames
 
@@ -26,14 +27,14 @@
 
 \newbibmacro{venue}{%
 	\ifthenelse{
-		\ifentrytype{case-gen-volume} \or%
-		\ifentrytype{case-gen-year} \or%
-		\ifentrytype{case-intl-volume} \or%
-		\ifentrytype{case-intl-year} \or%
-		\ifentrytype{case-cn-reported} \or%
-		\ifentrytype{case-scot-year}}{
+		\ifentrytype{caseGenVolume} \or%
+		\ifentrytype{caseGenYear} \or%
+		\ifentrytype{caseIntlVolume} \or%
+		\ifentrytype{caseIntlYear} \or%
+		\ifentrytype{caseCnReported} \or%
+		\ifentrytype{caseScotYear}}{
 		\iffieldundef{venue}{}{\addspace(\printfield{venue})}}{%
-			\ifentrytype{case-us-reported}{\addspace(\printfield{venue}\addcomma\addspace\printfield{year}){}}}}
+			\ifentrytype{caseUsReported}{\addspace(\printfield{venue}\addcomma\addspace\printfield{year}){}}}}
 
 
 
@@ -44,51 +45,51 @@
 		\ifloccit{}{%
 			\addspace#1}}{%
 		\ifthenelse{%
-			\ifentrytype{case-gen-volume} \or%
-			\ifentrytype{case-gen-year} \or%
-			\ifentrytype{case-submission} \or%
+			\ifentrytype{caseGenVolume} \or%
+			\ifentrytype{caseGenYear} \or%
+			\ifentrytype{caseSubmission} \or%
 			\ifentrytype{gazette} \or%
-			\ifentrytype{govt-order} \or%
+			\ifentrytype{govtOrder} \or%
 			\ifentrytype{pracnote} \or%
-			\ifentrytype{pracnote-volume} \or%
-			\ifentrytype{pracnote-year} \or%
-			\ifentrytype{article-volume} \or%
-			\ifentrytype{article-year} \or%
+			\ifentrytype{pracnoteVolume} \or%
+			\ifentrytype{pracnoteYear} \or%
+			\ifentrytype{articleVolume} \or%
+			\ifentrytype{articleYear} \or%
 			\ifentrytype{chapter} \or%
 			\ifentrytype{hansard} \or%
 			\ifentrytype{digest} \or%
-			\ifentrytype{parl-comm-evidence} \or%
+			\ifentrytype{parlCommEvidence} \or%
 			\ifentrytype{debate} \or%
 			\ifentrytype{submission} \or%
 			\ifentrytype{newspaper} \or%
-			\ifentrytype{case-icj-reported} \or%
-			\ifentrytype{case-pcij-reported} \or%
-			\ifentrytype{icj-pleading-reported} \or%
-			\ifentrytype{pcij-pleading-reported} \or%
-			\ifentrytype{icj-pleading-unreported} \or%
-			\ifentrytype{case-intl-volume} \or%
-			\ifentrytype{case-intl-year} \or%
-			\ifentrytype{act-ca} \or%
-			\ifentrytype{case-cn-reported} \or%
-			\ifentrytype{case-cn-unreported} \or%
-			\ifentrytype{case-fr-cass} \or%
-			\ifentrytype{case-fr-con} \or%
-			\ifentrytype{case-fr-gen} \or%
-			\ifentrytype{act-fr-individual} \or%
-			\ifentrytype{case-de} \or%
-			\ifentrytype{act-de-individual} \or%
-			\ifentrytype{act-hk-chapter} \or%
-			\ifentrytype{case-nz-maori} \or%
-			\ifentrytype{act-nz-rule} \or%
-			\ifentrytype{case-scot-year} \or%
-			\ifentrytype{act-uk-new} \or%
-			\ifentrytype{act-uk-old} \or%
-			\ifentrytype{act-uk-rule} \or%
-			\ifentrytype{case-us-reported}}{%
+			\ifentrytype{caseIcjReported} \or%
+			\ifentrytype{casePcijReported} \or%
+			\ifentrytype{icjPleadingReported} \or%
+			\ifentrytype{pcijPleadingReported} \or%
+			\ifentrytype{icjPleadingUnreported} \or%
+			\ifentrytype{caseIntlVolume} \or%
+			\ifentrytype{caseIntlYear} \or%
+			\ifentrytype{actCa} \or%
+			\ifentrytype{caseCnReported} \or%
+			\ifentrytype{caseCnUnreported} \or%
+			\ifentrytype{caseFrCass} \or%
+			\ifentrytype{caseFrCon} \or%
+			\ifentrytype{caseFrGen} \or%
+			\ifentrytype{actFrIndividual} \or%
+			\ifentrytype{caseDe} \or%
+			\ifentrytype{actDeIndividual} \or%
+			\ifentrytype{actHkChapter} \or%
+			\ifentrytype{caseNzMaori} \or%
+			\ifentrytype{actNzRule} \or%
+			\ifentrytype{caseScotYear} \or%
+			\ifentrytype{actUkNew} \or%
+			\ifentrytype{actUkOld} \or%
+			\ifentrytype{actUkRule} \or%
+			\ifentrytype{caseUsReported}}{%
 				\addcomma\addspace#1}{%
 				\addspace#1}}}%
 				
-\DeclareFieldFormat[act-cn]{postnote}{%
+\DeclareFieldFormat[actCn]{postnote}{%
 	\ifciteibid{%
 		\ifloccit{}{%
 			\addspace#1}}{%
@@ -104,7 +105,7 @@
 			\addcomma\addspace#1}{%
 			\addspace#1}}}%
 		
-\DeclareFieldFormat[article-volume,article-year]{postnote}{%
+\DeclareFieldFormat[articleVolume,articleYear]{postnote}{%
 	\ifciteibid{%
 		\ifloccit{}{%
 			\addspace#1}}{%
@@ -122,7 +123,7 @@
 			\addspace#1}{%
 			\addcomma\addspace#1}}}%
 		
-\DeclareFieldFormat[translated-book]{postnote}{%
+\DeclareFieldFormat[translatedBook]{postnote}{%
 	\ifciteibid{%
 		\ifloccit{}{%
 			\addspace#1}}{%
@@ -162,62 +163,62 @@
 		Ibid\addspace\printfield{postnote}}{%
 		\ifciteseen{%
 			\ifthenelse{%
-				\ifentrytype{case-gen-volume} \or%
-				\ifentrytype{case-gen-year} \or%
-				\ifentrytype{case-gen-mnc} \or%
-				\ifentrytype{case-gen-unreported} \or%
-				\ifentrytype{case-transcript} \or%
-				\ifentrytype{case-transcript-hca} \or%
+				\ifentrytype{caseGenVolume} \or%
+				\ifentrytype{caseGenYear} \or%
+				\ifentrytype{caseGenMnc} \or%
+				\ifentrytype{caseGenUnreported} \or%
+				\ifentrytype{caseTranscript} \or%
+				\ifentrytype{caseTranscriptHca} \or%
 				\ifentrytype{arbitration} \or%
-				\ifentrytype{case-submission} \or%
-				\ifentrytype{act-gen} \or%
+				\ifentrytype{caseSubmission} \or%
+				\ifentrytype{actGen} \or%
 				\ifentrytype{gazette} \or%
-				\ifentrytype{govt-order} \or%
-				\ifentrytype{non-govt-order} \or%
+				\ifentrytype{govtOrder} \or%
+				\ifentrytype{nonGovtOrder} \or%
 				\ifentrytype{pracnote} \or%
-				\ifentrytype{pracnote-volume} \or%
-				\ifentrytype{pracnote-year} \or%
-				\ifentrytype{bill-gen} \or%
-				\ifentrytype{bill-gen-exp} \or%
+				\ifentrytype{pracnoteVolume} \or%
+				\ifentrytype{pracnoteYear} \or%
+				\ifentrytype{billGen} \or%
+				\ifentrytype{billGenExp} \or%
 				\ifentrytype{hansard} \or%
-				\ifentrytype{parl-comm-evidence} \or%
+				\ifentrytype{parlCommEvidence} \or%
 				\ifentrytype{debate} \or%
 				\ifentrytype{interview} \or%
 				\ifentrytype{correspondence}
-				\ifentrytype{treaty-volume} \or%
-				\ifentrytype{treaty-year} \or%
-				\ifentrytype{treaty-number} \or%
+				\ifentrytype{treatyVolume} \or%
+				\ifentrytype{treatyYear} \or%
+				\ifentrytype{treatyNumber} \or%
 				\ifentrytype{rulesofcourt} \or%
-				\ifentrytype{case-icj-reported} \or%
-				\ifentrytype{case-pcij-reported} \or%
-				\ifentrytype{icj-pleading-reported} \or%
-				\ifentrytype{pcij-pleading-reported} \or%
-				\ifentrytype{icj-pleading-unreported} \or%
-				\ifentrytype{case-intl-volume} \or%
-				\ifentrytype{case-intl-year} \or%
-				\ifentrytype{case-intl-unreported} \or% 
-				\ifentrytype{act-ca} \or%
-				\ifentrytype{case-cn-reported} \or%
-				\ifentrytype{case-cn-unreported} \or%
-				\ifentrytype{act-cn} \or%
-				\ifentrytype{case-fr-cass} \or%
-				\ifentrytype{case-fr-con} \or%
-				\ifentrytype{case-fr-detat} \or%
-				\ifentrytype{case-fr-gen} \or%
-				\ifentrytype{act-fr-individual} \or%
-				\ifentrytype{case-de} \or%
-				\ifentrytype{act-de-individual} \or%
-				\ifentrytype{act-hk-chapter} \or%
-				\ifentrytype{case-nz-maori} \or%
-				\ifentrytype{case-nz-waitangi} \or%
-				\ifentrytype{act-nz-rule} \or%
-				\ifentrytype{act-sg-chapter} \or%
-				\ifentrytype{case-scot-year} \or%
-				\ifentrytype{act-uk-new} \or%
-				\ifentrytype{act-uk-old} \or%
-				\ifentrytype{act-uk-rule} \or%
-				\ifentrytype{case-us-reported} \or %
-				\ifentrytype{case-us-unreported}}{%
+				\ifentrytype{caseIcjReported} \or%
+				\ifentrytype{casePcijReported} \or%
+				\ifentrytype{icjPleadingReported} \or%
+				\ifentrytype{pcijPleadingReported} \or%
+				\ifentrytype{icjPleadingUnreported} \or%
+				\ifentrytype{caseIntlVolume} \or%
+				\ifentrytype{caseIntlYear} \or%
+				\ifentrytype{caseIntlUnreported} \or% 
+				\ifentrytype{actCa} \or%
+				\ifentrytype{caseCnReported} \or%
+				\ifentrytype{caseCnUnreported} \or%
+				\ifentrytype{actCn} \or%
+				\ifentrytype{caseFrCass} \or%
+				\ifentrytype{caseFrCon} \or%
+				\ifentrytype{caseFrDetat} \or%
+				\ifentrytype{caseFrGen} \or%
+				\ifentrytype{actFrIndividual} \or%
+				\ifentrytype{caseDe} \or%
+				\ifentrytype{actDeIndividual} \or%
+				\ifentrytype{actHkChapter} \or%
+				\ifentrytype{caseNzMaori} \or%
+				\ifentrytype{caseNzWaitangi} \or%
+				\ifentrytype{actNzRule} \or%
+				\ifentrytype{actSgChapter} \or%
+				\ifentrytype{caseScotYear} \or%
+				\ifentrytype{actUkNew} \or%
+				\ifentrytype{actUkOld} \or%
+				\ifentrytype{actUkRule} \or%
+				\ifentrytype{caseUsReported} \or %
+				\ifentrytype{caseUsUnreported}}{%
 				\usedriver{}{\thefield{entrytype}}\printfield{postnote}\usebibmacro{venue}}{%
 				\usebibmacro{author/editor:surname}\addcomma\addspace{above n}\addspace\ref{cbx@\csuse{cbx@\thefield{entrykey}}}\iffieldundef{postnote}{}{\ifloccit{}{\addcomma}\printfield{postnote}}}}{%
 			\usebibmacro{cite:save}%
