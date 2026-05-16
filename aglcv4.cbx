@@ -27,14 +27,14 @@
 
 \newbibmacro{venue}{%
 	\ifthenelse{
-		\ifentrytype{caseGenVolume} \or%
-		\ifentrytype{caseGenYear} \or%
-		\ifentrytype{caseIntlVolume} \or%
-		\ifentrytype{caseIntlYear} \or%
-		\ifentrytype{caseCnReported} \or%
-		\ifentrytype{caseScotYear}}{
+		\ifentrytype{casegenvolume} \or%
+		\ifentrytype{casegenyear} \or%
+		\ifentrytype{caseintlvolume} \or%
+		\ifentrytype{caseintlyear} \or%
+		\ifentrytype{casecnreported} \or%
+		\ifentrytype{casescotyear}}{
 		\iffieldundef{venue}{}{\addspace(\printfield{venue})}}{%
-			\ifentrytype{caseUsReported}{\addspace(\printfield{venue}\addcomma\addspace\printfield{year}){}}}}
+			\ifentrytype{caseusreported}{\addspace(\printfield{venue}\addcomma\addspace\printfield{year}){}}}}
 
 
 
@@ -45,51 +45,51 @@
 		\ifloccit{}{%
 			\addspace#1}}{%
 		\ifthenelse{%
-			\ifentrytype{caseGenVolume} \or%
-			\ifentrytype{caseGenYear} \or%
-			\ifentrytype{caseSubmission} \or%
+			\ifentrytype{casegenvolume} \or%
+			\ifentrytype{casegenyear} \or%
+			\ifentrytype{casesubmission} \or%
 			\ifentrytype{gazette} \or%
-			\ifentrytype{govtOrder} \or%
+			\ifentrytype{govtorder} \or%
 			\ifentrytype{pracnote} \or%
-			\ifentrytype{pracnoteVolume} \or%
-			\ifentrytype{pracnoteYear} \or%
-			\ifentrytype{articleVolume} \or%
-			\ifentrytype{articleYear} \or%
+			\ifentrytype{pracnotevolume} \or%
+			\ifentrytype{pracnoteyear} \or%
+			\ifentrytype{articlevolume} \or%
+			\ifentrytype{articleyear} \or%
 			\ifentrytype{chapter} \or%
 			\ifentrytype{hansard} \or%
 			\ifentrytype{digest} \or%
-			\ifentrytype{parlCommEvidence} \or%
+			\ifentrytype{parlcommevidence} \or%
 			\ifentrytype{debate} \or%
 			\ifentrytype{submission} \or%
 			\ifentrytype{newspaper} \or%
-			\ifentrytype{caseIcjReported} \or%
-			\ifentrytype{casePcijReported} \or%
-			\ifentrytype{icjPleadingReported} \or%
-			\ifentrytype{pcijPleadingReported} \or%
-			\ifentrytype{icjPleadingUnreported} \or%
-			\ifentrytype{caseIntlVolume} \or%
-			\ifentrytype{caseIntlYear} \or%
-			\ifentrytype{actCa} \or%
-			\ifentrytype{caseCnReported} \or%
-			\ifentrytype{caseCnUnreported} \or%
-			\ifentrytype{caseFrCass} \or%
-			\ifentrytype{caseFrCon} \or%
-			\ifentrytype{caseFrGen} \or%
-			\ifentrytype{actFrIndividual} \or%
-			\ifentrytype{caseDe} \or%
-			\ifentrytype{actDeIndividual} \or%
-			\ifentrytype{actHkChapter} \or%
-			\ifentrytype{caseNzMaori} \or%
-			\ifentrytype{actNzRule} \or%
-			\ifentrytype{caseScotYear} \or%
-			\ifentrytype{actUkNew} \or%
-			\ifentrytype{actUkOld} \or%
-			\ifentrytype{actUkRule} \or%
-			\ifentrytype{caseUsReported}}{%
+			\ifentrytype{caseicjreported} \or%
+			\ifentrytype{casepcijreported} \or%
+			\ifentrytype{icjpleadingreported} \or%
+			\ifentrytype{pcijpleadingreported} \or%
+			\ifentrytype{icjpleadingunreported} \or%
+			\ifentrytype{caseintlvolume} \or%
+			\ifentrytype{caseintlyear} \or%
+			\ifentrytype{actca} \or%
+			\ifentrytype{casecnreported} \or%
+			\ifentrytype{casecnunreported} \or%
+			\ifentrytype{casefrcass} \or%
+			\ifentrytype{casefrcon} \or%
+			\ifentrytype{casefrgen} \or%
+			\ifentrytype{actfrindividual} \or%
+			\ifentrytype{casede} \or%
+			\ifentrytype{actdeindividual} \or%
+			\ifentrytype{acthkchapter} \or%
+			\ifentrytype{casenzmaori} \or%
+			\ifentrytype{actnzrule} \or%
+			\ifentrytype{casescotyear} \or%
+			\ifentrytype{actuknew} \or%
+			\ifentrytype{actukold} \or%
+			\ifentrytype{actukrule} \or%
+			\ifentrytype{caseusreported}}{%
 				\addcomma\addspace#1}{%
 				\addspace#1}}}%
 				
-\DeclareFieldFormat[actCn]{postnote}{%
+\DeclareFieldFormat[actcn]{postnote}{%
 	\ifciteibid{%
 		\ifloccit{}{%
 			\addspace#1}}{%
@@ -105,7 +105,7 @@
 			\addcomma\addspace#1}{%
 			\addspace#1}}}%
 		
-\DeclareFieldFormat[articleVolume,articleYear]{postnote}{%
+\DeclareFieldFormat[articlevolume,articleyear]{postnote}{%
 	\ifciteibid{%
 		\ifloccit{}{%
 			\addspace#1}}{%
@@ -123,7 +123,7 @@
 			\addspace#1}{%
 			\addcomma\addspace#1}}}%
 		
-\DeclareFieldFormat[translatedBook]{postnote}{%
+\DeclareFieldFormat[translatedbook]{postnote}{%
 	\ifciteibid{%
 		\ifloccit{}{%
 			\addspace#1}}{%
@@ -163,62 +163,62 @@
 		Ibid\addspace\printfield{postnote}}{%
 		\ifciteseen{%
 			\ifthenelse{%
-				\ifentrytype{caseGenVolume} \or%
-				\ifentrytype{caseGenYear} \or%
-				\ifentrytype{caseGenMnc} \or%
-				\ifentrytype{caseGenUnreported} \or%
-				\ifentrytype{caseTranscript} \or%
-				\ifentrytype{caseTranscriptHca} \or%
+				\ifentrytype{casegenvolume} \or%
+				\ifentrytype{casegenyear} \or%
+				\ifentrytype{casegenmnc} \or%
+				\ifentrytype{casegenunreported} \or%
+				\ifentrytype{casetranscript} \or%
+				\ifentrytype{casetranscripthca} \or%
 				\ifentrytype{arbitration} \or%
-				\ifentrytype{caseSubmission} \or%
-				\ifentrytype{actGen} \or%
+				\ifentrytype{casesubmission} \or%
+				\ifentrytype{actgen} \or%
 				\ifentrytype{gazette} \or%
-				\ifentrytype{govtOrder} \or%
-				\ifentrytype{nonGovtOrder} \or%
+				\ifentrytype{govtorder} \or%
+				\ifentrytype{nongovtorder} \or%
 				\ifentrytype{pracnote} \or%
-				\ifentrytype{pracnoteVolume} \or%
-				\ifentrytype{pracnoteYear} \or%
-				\ifentrytype{billGen} \or%
-				\ifentrytype{billGenExp} \or%
+				\ifentrytype{pracnotevolume} \or%
+				\ifentrytype{pracnoteyear} \or%
+				\ifentrytype{billgen} \or%
+				\ifentrytype{billgenexp} \or%
 				\ifentrytype{hansard} \or%
-				\ifentrytype{parlCommEvidence} \or%
+				\ifentrytype{parlcommevidence} \or%
 				\ifentrytype{debate} \or%
 				\ifentrytype{interview} \or%
 				\ifentrytype{correspondence}
-				\ifentrytype{treatyVolume} \or%
-				\ifentrytype{treatyYear} \or%
-				\ifentrytype{treatyNumber} \or%
+				\ifentrytype{treatyvolume} \or%
+				\ifentrytype{treatyyear} \or%
+				\ifentrytype{treatynumber} \or%
 				\ifentrytype{rulesofcourt} \or%
-				\ifentrytype{caseIcjReported} \or%
-				\ifentrytype{casePcijReported} \or%
-				\ifentrytype{icjPleadingReported} \or%
-				\ifentrytype{pcijPleadingReported} \or%
-				\ifentrytype{icjPleadingUnreported} \or%
-				\ifentrytype{caseIntlVolume} \or%
-				\ifentrytype{caseIntlYear} \or%
-				\ifentrytype{caseIntlUnreported} \or% 
-				\ifentrytype{actCa} \or%
-				\ifentrytype{caseCnReported} \or%
-				\ifentrytype{caseCnUnreported} \or%
-				\ifentrytype{actCn} \or%
-				\ifentrytype{caseFrCass} \or%
-				\ifentrytype{caseFrCon} \or%
-				\ifentrytype{caseFrDetat} \or%
-				\ifentrytype{caseFrGen} \or%
-				\ifentrytype{actFrIndividual} \or%
-				\ifentrytype{caseDe} \or%
-				\ifentrytype{actDeIndividual} \or%
-				\ifentrytype{actHkChapter} \or%
-				\ifentrytype{caseNzMaori} \or%
-				\ifentrytype{caseNzWaitangi} \or%
-				\ifentrytype{actNzRule} \or%
-				\ifentrytype{actSgChapter} \or%
-				\ifentrytype{caseScotYear} \or%
-				\ifentrytype{actUkNew} \or%
-				\ifentrytype{actUkOld} \or%
-				\ifentrytype{actUkRule} \or%
-				\ifentrytype{caseUsReported} \or %
-				\ifentrytype{caseUsUnreported}}{%
+				\ifentrytype{caseicjreported} \or%
+				\ifentrytype{casepcijreported} \or%
+				\ifentrytype{icjpleadingreported} \or%
+				\ifentrytype{pcijpleadingreported} \or%
+				\ifentrytype{icjpleadingunreported} \or%
+				\ifentrytype{caseintlvolume} \or%
+				\ifentrytype{caseintlyear} \or%
+				\ifentrytype{caseintlunreported} \or% 
+				\ifentrytype{actca} \or%
+				\ifentrytype{casecnreported} \or%
+				\ifentrytype{casecnunreported} \or%
+				\ifentrytype{actcn} \or%
+				\ifentrytype{casefrcass} \or%
+				\ifentrytype{casefrcon} \or%
+				\ifentrytype{casefrdetat} \or%
+				\ifentrytype{casefrgen} \or%
+				\ifentrytype{actfrindividual} \or%
+				\ifentrytype{casede} \or%
+				\ifentrytype{actdeindividual} \or%
+				\ifentrytype{acthkchapter} \or%
+				\ifentrytype{casenzmaori} \or%
+				\ifentrytype{casenzwaitangi} \or%
+				\ifentrytype{actnzrule} \or%
+				\ifentrytype{actsgchapter} \or%
+				\ifentrytype{casescotyear} \or%
+				\ifentrytype{actuknew} \or%
+				\ifentrytype{actukold} \or%
+				\ifentrytype{actukrule} \or%
+				\ifentrytype{caseusreported} \or %
+				\ifentrytype{caseusunreported}}{%
 				\usedriver{}{\thefield{entrytype}}\printfield{postnote}\usebibmacro{venue}}{%
 				\usebibmacro{author/editor:surname}\addcomma\addspace{above n}\addspace\ref{cbx@\csuse{cbx@\thefield{entrykey}}}\iffieldundef{postnote}{}{\ifloccit{}{\addcomma}\printfield{postnote}}}}{%
 			\usebibmacro{cite:save}%
