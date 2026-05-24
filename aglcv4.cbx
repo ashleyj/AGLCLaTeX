@@ -111,8 +111,7 @@
 			\addspace#1}}{%
 		\iffieldundef{url}{%
 			\iffieldundef{pages}{%
-				\addspace#1}{
-				\addcomma\addspace#1}}{%
+				\addspace#1}{\ifdefstring{\cbx@citeform}{prevref}{\addspace#1}{\addcomma\addspace#1}}}{%
 				\addcomma\addspace#1\addspace\printfield{url}}}}%
 			
 \DeclareFieldFormat[book]{postnote}{%
@@ -220,7 +219,10 @@
 				\ifentrytype{caseusreported} \or %
 				\ifentrytype{caseusunreported}}{%
 				\usedriver{}{\thefield{entrytype}}\printfield{postnote}\iffieldundef{venue}{}{\usebibmacro{venue}}}{%
-				\usebibmacro{author/editor:surname}\addcomma\addspace{above n}\addspace\ref{cbx@\csuse{cbx@\thefield{entrykey}}}\iffieldundef{postnote}{}{\ifloccit{}{\addcomma}\printfield{postnote}}}}{%
+    \usebibmacro{author/editor:surname}\citereset\addspace{(n}\addspace\ref{cbx@\csuse{cbx@\thefield{entrykey}}}{)}\iffieldundef{postnote}{}{
+      % using 'previous reference' -- this will have a slightly different syntax for printing
+      \def\cbx@citeform{prevref}%
+      \printfield{postnote}}}}{%
 			\usebibmacro{cite:save}%
     \usedriver{}{\thefield{entrytype}}\printfield{postnote}\iffieldundef{venue}{}{\usebibmacro{venue}}}}}%
 {}{}%
