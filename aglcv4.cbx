@@ -219,7 +219,7 @@
 				\ifentrytype{actukrule} \or%
 				\ifentrytype{caseusreported} \or %
 				\ifentrytype{caseusunreported}}{%
-				\usedriver{}{\thefield{entrytype}}\printfield{postnote}\usebibmacro{venue}}{%
+				\usedriver{}{\thefield{entrytype}}\printfield{postnote}\iffieldundef{venue}{}{\usebibmacro{venue}}}{%
 				\usebibmacro{author/editor:surname}\addcomma\addspace{above n}\addspace\ref{cbx@\csuse{cbx@\thefield{entrykey}}}\iffieldundef{postnote}{}{\ifloccit{}{\addcomma}\printfield{postnote}}}}{%
 			\usebibmacro{cite:save}%
 			\usedriver{}{\thefield{entrytype}}\printfield{postnote}\usebibmacro{venue}}}}%
@@ -237,6 +237,8 @@
 \DeclareMultiCiteCommand{\quotedin}[\mkbibfootnote]{\cite}{, quoted in }
 \DeclareMultiCiteCommand{\citing}[\mkbibfootnote]{\cite}{, citing }
 \DeclareMultiCiteCommand{\citedin}[\mkbibfootnote]{\cite}{, cited in }
+\DeclareMultiCiteCommand{\discussedin}[\mkbibfootnote]{\cite}{, discussed in }
+\DeclareMultiCiteCommand{\discussing}[\mkbibfootnote]{\cite}{, discussing }
 
 \DeclareMultiCiteCommand{\affirmed}[\mkbibfootnote]{\cite}{, affd}
 \DeclareMultiCiteCommand{\reversed}[\mkbibfootnote]{\cite}{, revd}
