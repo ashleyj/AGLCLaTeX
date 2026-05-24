@@ -222,7 +222,7 @@
 				\usedriver{}{\thefield{entrytype}}\printfield{postnote}\iffieldundef{venue}{}{\usebibmacro{venue}}}{%
 				\usebibmacro{author/editor:surname}\addcomma\addspace{above n}\addspace\ref{cbx@\csuse{cbx@\thefield{entrykey}}}\iffieldundef{postnote}{}{\ifloccit{}{\addcomma}\printfield{postnote}}}}{%
 			\usebibmacro{cite:save}%
-			\usedriver{}{\thefield{entrytype}}\printfield{postnote}\usebibmacro{venue}}}}%
+    \usedriver{}{\thefield{entrytype}}\printfield{postnote}\iffieldundef{venue}{}{\usebibmacro{venue}}}}}%
 {}{}%
 					
 
